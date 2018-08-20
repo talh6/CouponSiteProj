@@ -1,0 +1,166 @@
+<div ng-controller="AdminController as adminCtrl">
+		<a href ng-click="setActive(1)">Create a new Company</a><br /> <a
+			href ng-click="setActive(2)">Remove a Company</a><br /> <a href
+			ng-click="setActive(3)">Update a Company</a><br /> <a href
+			ng-click="setActive(4)">View a Company</a><br /> <a href
+			ng-click="setActive(5)">View All Companies</a><br /> <a href
+			ng-click="setActive(6)">Create a Customer</a><br /> <a href
+			ng-click="setActive(7)">Remove a Customer</a><br /> <a href
+			ng-click="setActive(8)">Update a Customer</a><br /> <a href
+			ng-click="setActive(9)">View a Customer</a><br /> <a href
+			ng-click="setActive(10)">View All Customers</a><br />
+
+		<div ng-show="isActive(1)">
+			<h1>Please enter details for new company:</h1>
+			<input type="text" ng-model="createName" placeholder="Name" /><br />
+			<input type="text" ng-model="createPassword" placeholder="Password" /><br />
+			<input type="text" value="email" ng-model="createEmail"
+				placeholder="Email" /><br />
+			<button ng-click="createCompany()">create</button>
+			<p>
+				Name: {{createName}} <br /> Password: {{createPassword}} <br />
+				Email: {{createEmail}} 
+			</p>
+		</div>
+
+		<div ng-show="isActive(2)">
+			<h1>Which company would you like to remove?</h1>
+			<input type="Text" value="id" ng-model="removeId" placeholder="Id" /><br />
+			<button ng-click="removeCompany()">remove</button>
+			<p>
+				Id: {{removeId}} 
+			</p>
+		</div>
+		
+		<div ng-show="isActive(3)">
+			<h1>Which company would you like to update?</h1>
+			<input type="text" value="id" ng-model="updateId" placeholder="Id" />
+			<br /> <input type="text" value="name" ng-model="updateName"
+				placeholder="Name" /><br /> <input type="text"
+				ng-model="updatePassword" placeholder="Password" /><br /> <input
+				type="text" value="email" ng-model="updateEmail" placeholder="Email" /><br />
+			<button ng-click="updateCompany()">update</button>
+			<p>
+				Id: {{updateId}} <br /> Name: {{updateName}} <br /> New Passowrd:
+				{{updatePassword}} <br /> New Email: {{updateEmail}} <br />
+			</p>
+		</div>
+		<div ng-show="isActive(4)">
+			<h1>Which company would you like to view?</h1>
+			<input type="text" value="id" ng-model="getId" placeholder="Id" />
+			<button ng-click="getCompany()">view</button>
+			<p>Requested Company's Id is: {{getId}}</p>
+			<p>
+				<b>id: {{answer.id}}</b>
+			</p>
+			<p>
+				<b>Name: {{answer.compName}}</b>
+			</p>
+			<p>
+				<b>Password: {{answer.password}}</b>
+			</p>
+			<p>
+				<b>Email: {{answer.email}}</b>
+			</p>
+		</div>
+		
+		<div ng-show="isActive(5)" class="container">
+			<div class="w-50 p-3">
+				<button ng-click="getAllCompanies()" class="btn btn-primary">View all companies</button>
+			</div>
+			<h5>All Companies in the Database</h5>
+			<div>
+				<table class="table" id="resultTable">
+					<tr>
+						<th>Name</th>
+						<th>Password</th>
+						<th>Email</th>
+					</tr>
+					<tr ng-repeat="company in companies">
+						<td>{{company.compName}}</td>
+						<td>{{company.password}}</td>
+						<td>{{company.email}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		
+		<div ng-show="isActive(6)">
+			<h1>Please enter details for new customer:</h1>
+			<input type="text" value="name" ng-model="createNameCustomer"  placeholder="Name" /><br />
+		    <input type="password" value="" ng-model="createPassowrdCustomer" placeholder="Password" /><br />
+			<input type="text" value=""  ng-model="userName" placeholder="email" /><br />	
+			<button ng-click="createCustomer()">create</button>
+			<p>
+				Name: {{createNameCustomer}} <br /> Password:
+				{{createPassowrdCustomer}}  
+			</p>
+		</div>
+		
+		<div ng-show="isActive(7)">
+			<h1>Which customer would you like to remove?</h1>
+			<input type="Text" value="id" ng-model="removeId" placeholder="Id" /><br />
+			<button ng-click="removeCustomer()">remove</button>
+			<p>
+			Id: {{removeId}}
+		</div>
+		
+		<div ng-show="isActive(8)">
+			<h1>Which customer would you like to update?</h1>
+			<input type="text" value="id" ng-model="updateIdCustomer"
+				placeholder="Id" /> <br /> 
+			<input type="text" value="name"
+				ng-model="updateNameCustomer" placeholder="Name" /><br /> 
+			<input
+				type="text" ng-model="updatePasswordCustomer" placeholder="Password" /><br />
+			<input type="text" value=""
+				ng-model="userName" placeholder="UserName" /><br />
+				
+			<button ng-click="updateCustomer()">update</button>
+			<p>
+				Id: {{updateIdCustomer}} <br /> Name: {{updateNameCustomer}} <br />
+				New Passowrd: {{updatePasswordCustomer}} <br />
+			</p>
+		</div>
+		
+		<div ng-show="isActive(9)">
+			<h1>Which customer would you like to view?</h1>
+			get: <input type="text" value="id" ng-model="getIdCustoemr"
+				placeholder="Id" />
+			<button ng-click="getCustomer()">view</button>
+			<p>Requested Customer's Id is: {{getIdCustoemr}}</p>
+			<p>
+				<b>id: {{answer.id}}</b>
+			</p>
+			<p>
+				<b>Name: {{answer.name}}</b>
+			</p>
+			<p>
+				<b>Password: {{answer.password}}</b>
+			</p>
+			<p>
+				<b>username: {{answer.userName}}</b>
+			</p>
+		</div>
+		
+		<div ng-show="isActive(10)">
+			<button ng-click="getAllCustomers()">View all customers</button>
+			<h1>All Customers in the Database</h1>
+			<div>
+				<table border="3" id="resultTable">
+					<tr>
+						<th>id</th>
+						<th>name</th>
+						<th>password</th>
+						<th>userName</th>
+					</tr>
+					<tr ng-repeat="customer in customers">
+						<td>{{customer.id}}</td>
+						<td>{{customer.custName}}</td>
+						<td>{{customer.password}}</td>
+						<td>{{customer.userName}}
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>

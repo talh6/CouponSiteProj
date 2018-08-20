@@ -1,0 +1,15 @@
+
+<div ng-controller="LoginController as loginCtrl">
+
+	<form ng-submit="loginCtrl.login()">
+		User :   <input type = "text"   ng-model="user.username"></input><br><br> 
+		Pasword :<input type="password" ng-model="user.password"></input><br>
+		<br> Type :<select ng-model="user.type">
+			<option value="ADMIN">ADMIN</option>
+			<option value="CUSTOMER">CUSTOMER</option>
+			<option value="COMPANY">COMPANY</option>
+		</select>
+		<input type="submit"/>
+	</form>
+</div>
+
